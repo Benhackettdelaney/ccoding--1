@@ -1,6 +1,8 @@
 class BarChart {
+
   //sets up variables and use the parameters
-  constructor(_barWidth, _barHeight, _posX, _posY, _title, _data) {
+  constructor({_barWidth=500, _barHeight=500, _posX=20, _posY=450, _title="my chart", _data, _valueX, _valueY}) {
+    _barWidth:300, _barHeight:200, _posX:50, _posY:400, _title:" Hospital admissions", _data:table, _valueX:"Year", _valueY:"Total"
     this.barChartWidth = _barWidth;
     this.barChartHeight = _barHeight;
     this.titleName = _title;
@@ -8,11 +10,14 @@ class BarChart {
     this.posY = _posY;
     this.data = _data;
     this.noTicks = 10;
-    this.roundUp = 10
+    this.roundUp = 1;
+    this.valueX= _valueX;
+    this.valueY = _valueY;
     this.MaximumNo = this.calMax();
     this.barMargin = 10;
     this.space = 5;
   }
+
   render() {
     noFill();
 
@@ -34,8 +39,9 @@ class BarChart {
     translate(this.barMargin, 0)
     // rect(0,0,10,-10)
     for (let x = 0; x < barNo; x++) {
-      let value = int(-this.data.rows[x].obj.Total);
-      
+      let value = int(-this.data.rows[x].obj[this.valueY]);
+      noStroke()
+      fill(125, 229, 237)
       rect(x * spaceBar, 0, barChartWidth, this.scaleUp(value));
     }
     pop();
@@ -44,6 +50,26 @@ class BarChart {
   // draws the horizontal line
   drawAxisH() {
     line(0, 0, this.barChartWidth, 0);
+    let barNo = this.data.getRowCount();
+    let remainingWidth =this.barChartWidth - this.barMargin * 2 - (barNo - 1) * this.space;
+    let barChartWidth = remainingWidth / barNo;
+    let spaceBar = barChartWidth + this.space;
+    push();
+    translate(this.barMargin, 0)
+
+    let labels = this.data.getColumn(this.valueX);
+    for(let x=0; x<labels.length; x++){
+      let value = labels[x];
+      push();
+      translate(x*spaceBar + (barChartWidth/2),5);
+      rotate(45)
+     fill(0);
+     textSize(12);
+      textAlign(LEFT,TOP);
+      text(value, 0,0);
+      pop()
+    }
+    pop();
   }
 
   // draws the vertical line
@@ -69,8 +95,8 @@ class BarChart {
   calMax() {
     let maximum = 0;
     for (let x = 0; x < this.data.getRowCount(); x++) {
-      if (int(this.data.rows[x].obj.Total) > maximum) {
-        maximum = int(this.data.rows[x].obj.Total);
+      if (int(this.data.rows[x].obj[this.valueY]) > maximum) {
+        maximum = int(this.data.rows[x].obj[this.valueY]);
       }
 
     }
@@ -85,15 +111,10 @@ class BarChart {
     return maximum;
   }
 
-  // not map function
-  // scaleUp(_no){
-  //     let scalingValue = this.MaximumNo/this.barChartHeight
-  //     return _no/scalingValue
-  // }
-
-  // map function, this makes it so the bars will scale up to any parameter I set such as the excel sheet 
-  // in data folder
   scaleUp(_no) {
     return map(_no, 0, this.MaximumNo, 0, this.barChartHeight);
   }
 }
+
+
+
