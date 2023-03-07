@@ -1,8 +1,15 @@
 class BarChart {
 
   //sets up variables and use the parameters
-  constructor({_barWidth=500, _barHeight=500, _posX=20, _posY=450, _title="my chart", _data, _valueX, _valueY}) {
-    _barWidth:300, _barHeight:200, _posX:50, _posY:400, _title:" Hospital admissions", _data:table, _valueX:"Year", _valueY:"Total"
+  constructor({
+    _barWidth=500,
+    _barHeight=500,
+    _posX=20, 
+    _posY=450,
+    _title="my chart", 
+    _data,
+    _valueX, 
+    _valueY}) {
     this.barChartWidth = _barWidth;
     this.barChartHeight = _barHeight;
     this.titleName = _title;
@@ -15,7 +22,7 @@ class BarChart {
     this.valueY = _valueY;
     this.MaximumNo = this.calMax();
     this.barMargin = 10;
-    this.space = 5;
+    this.space = 10;
   }
 
   render() {
@@ -79,7 +86,7 @@ class BarChart {
       let spaceY = this.barChartHeight / this.noTicks;
 
       stroke(50);
-      line(0, -spaceY * y, -10, -spaceY * y);
+      line(this.barChartWidth, -spaceY * y, -10, -spaceY * y);
 
       let spaceUnit = (this.MaximumNo / this.noTicks).toFixed(2);
       noStroke();
