@@ -82,7 +82,7 @@ function setup() {
       _noTicks:10,
       _roundUp:1,
       _barMargin:10,
-      _space:5,
+      _space:1,
       _valueX:"Year",
       _valueY:"Total",
       _valueE:"England",

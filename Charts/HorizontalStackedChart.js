@@ -48,15 +48,16 @@ class HorizontalStackedChart {
       let barNo = this.data.getRowCount();
       let remainingHeight =this.barChartHeight - this.barMargin * 2 - (barNo - 1) * this.space;
       let barChartHeight = remainingHeight / barNo;
-      let spaceBar = barChartHeight + this.space;
+      let spaceBar = barChartHeight + this.space + 10;
       push();
       translate(this.barMargin, 0);
       for (let y = 0; y < barNo; y++) {
-        let value = int(-this.data.rows[y].obj[this.value]);
+        let value = int(-this.data.rows[y].obj[this.valueY]);
         noStroke();
         fill(125, 229, 237);
-        rect( 0,y * spaceBar, this.scaleUp(value), barChartHeight);
+        rect(0, y * -spaceBar, -this.scaleUp(value), -barChartHeight );
       }
+      
       pop();
     }
   
@@ -66,15 +67,27 @@ class HorizontalStackedChart {
       let barNo = this.data.getRowCount();
       let remainingHeight =this.barChartHeight - this.barMargin * 2 - (barNo - 1) * this.space;
       let barChartHeight = remainingHeight / barNo;
-      let spaceBar = barChartHeight + this.space;
+      let spaceBar = barChartHeight + this.space + 10;
       push();
       translate(this.barMargin, 0);
       for (let y = 0; y < barNo; y++) {
         let value = int(-this.data.rows[y].obj[this.valueY]);
         noStroke();
         fill(125, 229, 237);
-        rect(y * spaceBar, 0, barChartHeight, this.scaleUp(value));
+        rect(0, y * -spaceBar , -this.scaleUp(value), -barChartHeight,-this.scaleUp(value) );
       }
+      // for (let x = 0; x < barNo; x++) {
+      //   let value = int(-this.data.rows[x].obj[this.valueE]);
+      //   noStroke();
+      //   fill(93, 167, 219);
+      //   rect(x * spaceBar, 0, barChartWidth, this.scaleUp(value));
+      // }
+      // for (let x = 0; x < barNo; x++) {
+      //   let value = int(-this.data.rows[x].obj[this.valueI]);
+      //   noStroke();
+      //   fill(88, 55, 208);
+      //   rect(x * spaceBar, 0, barChartWidth, this.scaleUp(value));
+      // }
       let labels = this.data.getColumn(this.valueY);
       for (let y = 0; y < labels.length; y++) {
         let value = labels[y];
@@ -93,21 +106,19 @@ class HorizontalStackedChart {
     drawAxisV() {
       line(0, 0, 0, -this.barChartWidth);
       let barNo = this.data.getRowCount();
-      let remainingWidth =
-        this.barChartWidth - this.barMargin * 2 - (barNo - 1) * this.space;
+      let remainingWidth =this.barChartWidth - this.barMargin * 2 - (barNo - 1) * this.space;
       let barChartWidth = remainingWidth / barNo;
       let spaceBar = barChartWidth + this.space;
       for (let x = 1; x < this.noTicks + 1; x++) {
         let spaceX = this.barChartWidth / this.noTicks;
         
         stroke(50);
-        line(0, -spaceX * x, -10, -spaceX * x);
-  
-        let spaceUnit = (this.MaximumNo / this.noTicks).toFixed(2);
+        line(0, spaceX * -x, -10, spaceX * -x);
+
         noStroke();
-        fill(50);
+        noFill(50);
         textSize(12);
-        textAlign(RIGHT, CENTER);
+        textAlign(LEFT, CENTER);
         let labels = this.data.getColumn(this.valueX);
       for (let x = 0; x < labels.length; x++) {
         let value = labels[x];
