@@ -85,7 +85,7 @@ class BarChart {
     textAlign(CENTER)
     fill(0,0,0)
     textSize(30)               
-    text("Horizontal Hospital Admissions",this.barChartWidth/2,-this.barChartHeight-50)
+    text(" Hospital Admissions",this.barChartWidth/2,-this.barChartHeight-50)
   }
 
   // draws the vertical line
