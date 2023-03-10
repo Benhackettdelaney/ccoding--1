@@ -1,7 +1,7 @@
 let data;
 let table;
 let chart = [];
-
+let colourPallet = ["#6D0FE5", "#9687F2", "#0F7EE5"];
 // takes the information from the excel sheet to be used
 function preload() {
   table = loadTable(
@@ -18,75 +18,77 @@ function setup() {
 
   chart.push(
     new BarChart({
-      _barWidth:400,
-      _barHeight:300,
-      _posX:100,
-      _posY:400,
-      _title:"Hospital Admissions",
-      _data:table,
-      _noTicks:10,
-      _roundUp:1,
-      _barMargin:10,
-      _space:5    ,
-      _valueX:"Year",
-      _valueY:"Total",
+      _barWidth: 400,
+      _barHeight: 300,
+      _posX: 100,
+      _posY: 400,
+      _title: "Hospital Admissions",
+      _data: table,
+      _noTicks: 10,
+      _roundUp: 1,
+      _barMargin: 10,
+      _space: 15,
+      _colourPallet: colourPallet,
+      _valueX: "Year",
+      _valueY: "Total",
     })
   );
 
   chart.push(
     new StackedChart({
-      _barWidth:400,
-      _barHeight:300,
-      _posX:100,
-      _posY:900,
-      _title:"Stacked Hospital Admissions",
-      _data:table,
-      _noTicks:10,
-      _roundUp:1,
-      _barMargin:10,
-      _space:10,
-      _valueX:"Year",
-      _valueY:"Total",
-      _valueE:"England",
-      _valueI:"NorthernI",
+      _barWidth: 400,
+      _barHeight: 300,
+      _posX: 100,
+      _posY: 900,
+      _title: "Stacked Hospital Admissions",
+      _data: table,
+      _noTicks: 10,
+      _roundUp: 1,
+      _barMargin: 10,
+      _space: 10,
+      _valueX: "Year",
+      _valueY: "Total",
+      _valueE: "England",
+      _valueI: "NorthernI",
     })
   );
 
   chart.push(
     new HorizontalChart({
-      _barWidth:500,
-      _barHeight:400,
-      _posX:600,
-      _posY:800,
-      _title:"Horizontal Stacked Hospital Admissions",
-      _data:table,
-      _noTicks:10,
-      _roundUp:10,
-      _barMargin:10,
-      _space:5,
-      _valueX:"Year",
-      _valueY:"Total",
-      _valueE:"England",
-      _valueI:"NorthernI",
+      _barWidth: 500,
+      _barHeight: 400,
+      _posX: 600,
+      _posY: 800,
+      _title: "Horizontal Stacked Hospital Admissions",
+      _data: table,
+      _noTicks: 10,
+      _roundUp: 10,
+      _barMargin: 10,
+      _space: 5,
+      _colourPallet: colourPallet,
+      _valueX: "Year",
+      _valueY: "Total",
+      _valueE: "England",
+      _valueI: "NorthernI",
     })
   );
 
   chart.push(
     new HorizontalStackedChart({
-      _barWidth:500,
-      _barHeight:400,
-      _posX:1200,
-      _posY:800,
-      _title:"Horizontal  Hospital Admissions",
-      _data:table,
-      _noTicks:10,
-      _roundUp:10,
-      _barMargin:10,
-      _space:1,
-      _valueX:"Year",
-      _valueY:"Total",
-      _valueE:"England",
-      _valueI:"NorthernI",
+      _barWidth: 500,
+      _barHeight: 400,
+      _posX: 1200,
+      _posY: 800,
+      _title: "Horizontal  Hospital Admissions",
+      _data: table,
+      _noTicks: 10,
+      _roundUp: 10,
+      _barMargin: 10,
+      _space: 5,
+      _valueX: "Year",
+      _valueY: "Total",
+      _valueE: "England",
+      _valueI: "NorthernI",
     })
   );
 }

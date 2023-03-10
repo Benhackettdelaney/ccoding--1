@@ -4,13 +4,14 @@ class BarChart {
     _barWidth,
     _barHeight,
     _posX,
-    _posY ,
+    _posY,
     _title,
     _data,
-    _noTicks ,
-    _roundUp ,
-    _barMargin ,
-    _space ,
+    _noTicks,
+    _colourPallet,
+    _roundUp,
+    _barMargin,
+    _space,
     _valueX,
     _valueY,
   }) {
@@ -19,15 +20,15 @@ class BarChart {
     this.titleName = _title;
     this.posX = _posX;
     this.posY = _posY;
-    this.data = _data;                                                                                    
+    this.data = _data;
     this.noTicks = _noTicks;
     this.roundUp = _roundUp;
     this.valueX = _valueX;
     this.valueY = _valueY;
-    this.MaximumNo = this.calMax();
+    this.maximumNo = this.calMax();
     this.barMargin = _barMargin;
     this.space = _space;
-    this.colourPallet = ['#00A3FF', '#00E1FF', '#0F7EE5', '#0A42CF']
+    this.colourPallet = _colourPallet;
   }
 
   render() {
@@ -52,9 +53,10 @@ class BarChart {
     translate(this.barMargin, 0);
     for (let x = 0; x < barNo; x++) {
       let value = int(-this.data.rows[x].obj[this.valueY]);
+      let colourPallet = x % this.colourPallet.length;
+      fill(this.colourPallet[colourPallet]);
       noStroke();
-      fill(this.data.rows[x].obj, 229, 237);
-      rect(x * spaceBar, 0, barChartWidth, this.scaleUp(value));
+      rect(x * spaceBar, 0, barChartWidth, this.scaleUp(value), 0, 0, 10, 10);
     }
     pop();
   }
@@ -83,10 +85,14 @@ class BarChart {
       pop();
     }
     pop();
-    textAlign(CENTER)
-    fill(0,0,0)
-    textSize(30)               
-    text(" Hospital Admissions",this.barChartWidth/2,-this.barChartHeight-50)
+    textAlign(CENTER);
+    fill(0, 0, 0);
+    textSize(30);
+    text(
+      " Hospital Admissions",
+      this.barChartWidth / 2,
+      -this.barChartHeight - 50
+    );
   }
 
   // draws the vertical line
@@ -98,7 +104,7 @@ class BarChart {
       stroke(50);
       fill(50);
       line(this.barChartWidth, -spaceY * y, -10, -spaceY * y);
-      let spaceUnit = (this.MaximumNo / this.noTicks).toFixed(2);
+      let spaceUnit = (this.maximumNo / this.noTicks).toFixed(2);
       noStroke();
       fill(50);
       textSize(12);
@@ -127,8 +133,6 @@ class BarChart {
   }
 
   scaleUp(_no) {
-    return map(_no, 0, this.MaximumNo, 0, this.barChartHeight);
+    return map(_no, 0, this.maximumNo, 0, this.barChartHeight);
   }
-
-
 }
