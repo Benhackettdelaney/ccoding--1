@@ -89,7 +89,7 @@ class BarChart {
     fill(0, 0, 0);
     textSize(30);
     text(
-      " Hospital Admissions",
+      " Hospital Admissions Total",
       this.barChartWidth / 2,
       -this.barChartHeight - 50
     );

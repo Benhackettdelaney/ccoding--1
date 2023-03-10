@@ -15,7 +15,9 @@ class StackedChart {
       _valueX, 
       _valueY,
       _valueE,
-      _valueI,  }) {
+      _valueI,
+      _stack,
+      }) {
       this.barChartWidth = _barWidth;
       this.barChartHeight = _barHeight;
       this.titleName = _title;
@@ -28,6 +30,7 @@ class StackedChart {
       this.valueY = _valueY;
       this.valueE = _valueE;
       this.valueI = _valueI;
+      this.stack = _stack;  
       this.MaximumNo = this.calMax();
       this.barMargin = _barMargin;
       this.space = _space;
@@ -106,7 +109,7 @@ class StackedChart {
     textAlign(CENTER)
     fill(0,0,0)
     textSize(30)               
-    text("Stacked Hospital Admissions",this.barChartWidth/2,-this.barChartHeight-50)
+    text("Hospital Admissions Eng & N-IRE",this.barChartWidth/2,-this.barChartHeight-50)
   }
 
 

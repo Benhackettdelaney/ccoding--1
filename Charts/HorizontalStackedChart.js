@@ -15,6 +15,7 @@ class HorizontalStackedChart {
     _valueY,
     _valueE,
     _valueI,
+
   }) {
     this.barChartWidth = _barWidth;
     this.barChartHeight = _barHeight;
@@ -87,7 +88,7 @@ class HorizontalStackedChart {
     fill(0);
     textSize(30);
     text(
-      "Horizontal Hospital Admissions",
+      "Hospital Admissions Eng & N-IRE",
       this.barChartWidth / 2,
       -this.barChartHeight - 140
     );

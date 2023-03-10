@@ -88,7 +88,7 @@ class HorizontalChart {
     fill(0);
     textSize(30);
     text(
-      "Horizontal Hospital Admissions",
+      " Hospital Admissions Total",
       this.barChartWidth / 2,
       -this.barChartHeight - 140
     );

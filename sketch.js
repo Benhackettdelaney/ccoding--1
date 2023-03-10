@@ -1,5 +1,6 @@
 let data;
 let table;
+let stack;
 let chart = [];
 let colourPallet = ["#6D0FE5", "#9687F2", "#0F7EE5"];
 // takes the information from the excel sheet to be used
@@ -46,6 +47,7 @@ function setup() {
       _roundUp: 1,
       _barMargin: 10,
       _space: 10,
+      _stack:["England", "NorthernI"],
       _valueX: "Year",
       _valueY: "Total",
       _valueE: "England",
