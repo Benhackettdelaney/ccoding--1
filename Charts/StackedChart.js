@@ -14,8 +14,7 @@ class StackedChart {
       _space,
       _valueX, 
       _valueY,
-      _valueE,
-      _valueI,
+      _valueArray,
       _stack,
       }) {
       this.barChartWidth = _barWidth;
@@ -28,12 +27,12 @@ class StackedChart {
       this.roundUp = _roundUp;
       this.valueX = _valueX;
       this.valueY = _valueY;
-      this.valueE = _valueE;
-      this.valueI = _valueI;
+      this.valueArray =_valueArray;
       this.stack = _stack;  
       this.MaximumNo = this.calMax();
       this.barMargin = _barMargin;
       this.space = _space;
+      this.colourPallet = ["#6D0FE5", "#9687F2"];
   }
 
   render() {
@@ -54,27 +53,23 @@ class StackedChart {
       this.barChartWidth - this.barMargin * 2 - (barNo - 1) * this.space;
     let barChartWidth = remainingWidth / barNo;
     let spaceBar = barChartWidth + this.space;
-    push();
-    translate(this.barMargin, 0);
-    for (let x = 0; x < barNo; x++) {
-      let value = int(-this.data.rows[x].obj[this.valueY]);
-      noStroke();
-      fill(125, 229, 237);
-      rect(x * spaceBar, 0, barChartWidth, this.scaleUp(value));
+   
+    push()
+    translate(this.barMargin,0)
+    for(let x=0; x<this.data.getRowCount();x++){
+      push()
+      translate (x * spaceBar,0)
+      for(let i=0; i<this.valueArray.length;i++){
+        let a = this.valueArray[i] 
+        let c = this.colourPallet[i]
+        let bars = int(this.data.rows[x].obj[a])
+        fill(color(c))
+        rect(0, 0, barChartWidth, -this.scaleUp(bars))
+        translate(0,-this.scaleUp(bars))
+      }
+      pop()
     }
-    for (let x = 0; x < barNo; x++) {
-      let value = int(-this.data.rows[x].obj[this.valueE]);
-      noStroke();
-      fill(93, 167, 219);
-      rect(x * spaceBar, 0, barChartWidth, this.scaleUp(value));
-    }
-    for (let x = 0; x < barNo; x++) {
-      let value = int(-this.data.rows[x].obj[this.valueI]);
-      noStroke();
-      fill(88, 55, 208);
-      rect(x * spaceBar, 0, barChartWidth, this.scaleUp(value));
-    }
-    pop();
+    pop()
   }
 
   // draws the horizontal line

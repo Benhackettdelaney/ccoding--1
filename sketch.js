@@ -1,6 +1,5 @@
 let data;
 let table;
-let stack;
 let chart = [];
 let colourPallet = ["#6D0FE5", "#9687F2", "#0F7EE5"];
 // takes the information from the excel sheet to be used
@@ -36,6 +35,24 @@ function setup() {
   );
 
   chart.push(
+    new BarChart({
+      _barWidth: 400,
+      _barHeight: 300,
+      _posX: 100,
+      _posY: 1500,
+      _title: "Hospital Admissions Northern Ire",
+      _data: table,
+      _noTicks: 10,
+      _roundUp: 1,
+      _barMargin: 10,
+      _space: 15,
+      _colourPallet: colourPallet,
+      _valueX: "Year",
+      _valueY: "NorthernI",
+    })
+  );
+
+  chart.push(
     new StackedChart({
       _barWidth: 400,
       _barHeight: 300,
@@ -47,11 +64,9 @@ function setup() {
       _roundUp: 1,
       _barMargin: 10,
       _space: 10,
-      _stack:["England", "NorthernI"],
       _valueX: "Year",
       _valueY: "Total",
-      _valueE: "England",
-      _valueI: "NorthernI",
+      _valueArray:["England", "NorthernI"]
     })
   );
 
@@ -89,8 +104,7 @@ function setup() {
       _space: 5,
       _valueX: "Year",
       _valueY: "Total",
-      _valueE: "England",
-      _valueI: "NorthernI",
+      _valueArray:["England", "NorthernI"]
     })
   );
 }
@@ -101,4 +115,5 @@ function draw() {
   chart[1].render();
   chart[2].render();
   chart[3].render();
+  chart[4].render();
 }

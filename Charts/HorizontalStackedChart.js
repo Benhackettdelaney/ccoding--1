@@ -13,8 +13,7 @@ class HorizontalStackedChart {
     _space,
     _valueX,
     _valueY,
-    _valueE,
-    _valueI,
+    _valueArray,
 
   }) {
     this.barChartWidth = _barWidth;
@@ -27,11 +26,11 @@ class HorizontalStackedChart {
     this.roundUp = _roundUp;
     this.valueX = _valueX;
     this.valueY = _valueY;
-    this.valueE = _valueE;
-    this.valueI = _valueI;
+    this.valueArray =_valueArray;
     this.maximumNo = this.calMax();
     this.barMargin = _barMargin;
     this.space = _space;
+    this.colourPallet = ["#6D0FE5", "#9687F2"];
   }
   render() {
     noFill();
@@ -51,27 +50,23 @@ class HorizontalStackedChart {
       this.barChartHeight - this.barMargin * 2 - (barNo - 1) * this.space;
     let barChartHeight = remainingHeight / barNo;
     let spaceBar = barChartHeight + this.space + 10;
-    push();
-    translate(0, -this.barMargin);
-    for (let y = 0; y < barNo; y++) {
-      let value = int(-this.data.rows[y].obj[this.valueY]);
-      noStroke();
-      fill(125, 229, 237);
-      rect(0, y * -spaceBar, -this.scaleUp(value), -barChartHeight);
+    
+    push()
+    translate(0,this.barMargin - 35)
+    for(let x=0; x<this.data.getRowCount();x++){
+      push()
+      translate (0,x * -spaceBar)
+      for(let i=0; i<this.valueArray.length;i++){
+        let a = this.valueArray[i] 
+        let c = this.colourPallet[i]
+        let bars = int(this.data.rows[x].obj[a])
+        fill(color(c))
+        rect(300, 0, -this.scaleUp(bars),-barChartHeight)
+        translate(-this.scaleUp(bars),0)
+      }
+      pop()
     }
-    for (let y = 0; y < barNo; y++) {
-      let value = int(-this.data.rows[y].obj[this.valueE]);
-      noStroke();
-      fill(93, 167, 219);
-      rect(0, y * -spaceBar, -this.scaleUp(value), -barChartHeight);
-    }
-    for (let y = 0; y < barNo; y++) {
-      let value = int(-this.data.rows[y].obj[this.valueI]);
-      noStroke();
-      fill(88, 55, 208);
-      rect(0, y * -spaceBar, -this.scaleUp(value), -barChartHeight);
-    }
-    pop();
+    pop()
   }
 
   drawAxisH() {
