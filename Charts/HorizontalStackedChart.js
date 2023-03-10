@@ -45,6 +45,7 @@ class HorizontalStackedChart {
 
   // draws the bars to screen
   drawingBar() {
+
     let barNo = this.data.getRowCount();
     let remainingHeight =
       this.barChartHeight - this.barMargin * 2 - (barNo - 1) * this.space;
@@ -52,16 +53,16 @@ class HorizontalStackedChart {
     let spaceBar = barChartHeight + this.space + 10;
     
     push()
-    translate(0,this.barMargin - 35)
+    translate(0,-this.barMargin)
     for(let x=0; x<this.data.getRowCount();x++){
       push()
-      translate (0,x * -spaceBar)
+      translate (0,-x * spaceBar)
       for(let i=0; i<this.valueArray.length;i++){
         let a = this.valueArray[i] 
         let c = this.colourPallet[i]
-        let bars = int(this.data.rows[x].obj[a])
+        let bars = int(-this.data.rows[x].obj[a])
         fill(color(c))
-        rect(300, 0, -this.scaleUp(bars),-barChartHeight)
+        rect(0, 0, -this.scaleUp(bars),-barChartHeight)
         translate(-this.scaleUp(bars),0)
       }
       pop()
