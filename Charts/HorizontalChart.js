@@ -70,25 +70,14 @@ class HorizontalChart {
     let remainingHeight =this.barChartHeight - this.barMargin * 2 - (barNo - 1) * this.space;
     let barChartHeight = remainingHeight / barNo;
     let spaceBar = barChartHeight + this.space + 10;
-    push();
-    translate(this.barMargin - 10, 0);
+    push()
+    translate(-this.barMargin , 0);
    
-    let labels = this.data.getColumn(this.valueY);
-    for (let y = 0; y < labels.length; y++) {
-      let value = labels[y];
-      push();
-      translate(y * spaceBar + this.barChartWidth / 5, 10);
-      rotate(45);
-      fill(0);
-      textSize(12);
-      textAlign(LEFT, TOP);
-      text(value, 0, 0);
-      pop();
-    }
-    pop();
+  
+   
     textAlign(CENTER)
     fill(0)
-    textSize(25)               
+    textSize(30)               
     text("Horizontal Hospital Admissions",this.barChartWidth/2,-this.barChartHeight-140)
 
 
@@ -97,7 +86,14 @@ class HorizontalChart {
 
       stroke(50);
       line(spaceY * y ,9, spaceY * y,0);
+      let spaceUnit = (this.MaximumNo / this.noTicks).toFixed(2);
+      noStroke();
+      fill(50);
+      textSize(12);
+      textAlign(RIGHT, CENTER);
+      text(y * spaceUnit,spaceY * y,this.barMargin + 10);
       }
+      pop()
   }
 
   drawAxisV() {
