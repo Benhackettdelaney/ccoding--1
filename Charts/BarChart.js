@@ -27,6 +27,7 @@ class BarChart {
     this.MaximumNo = this.calMax();
     this.barMargin = _barMargin;
     this.space = _space;
+    this.colourPallet = ['#00A3FF', '#00E1FF', '#0F7EE5', '#0A42CF']
   }
 
   render() {
@@ -95,7 +96,8 @@ class BarChart {
       let spaceY = this.barChartHeight / this.noTicks;
 
       stroke(50);
-      line(0, -spaceY * y, -10, -spaceY * y);
+      fill(50);
+      line(this.barChartWidth, -spaceY * y, -10, -spaceY * y);
       let spaceUnit = (this.MaximumNo / this.noTicks).toFixed(2);
       noStroke();
       fill(50);

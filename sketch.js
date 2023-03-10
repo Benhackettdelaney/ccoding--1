@@ -12,15 +12,15 @@ function preload() {
 }
 // creates the canvas
 function setup() {
-  createCanvas(1500, 1500);
+  createCanvas(2000, 2000);
   background(200);
   pixelDensity(2);
 
   chart.push(
     new BarChart({
-      _barWidth:300,
-      _barHeight:200,
-      _posX:150,
+      _barWidth:400,
+      _barHeight:300,
+      _posX:100,
       _posY:400,
       _title:"Hospital Admissions",
       _data:table,
@@ -35,10 +35,10 @@ function setup() {
 
   chart.push(
     new StackedChart({
-      _barWidth:300,
-      _barHeight:200,
-      _posX:150,
-      _posY:800,
+      _barWidth:400,
+      _barHeight:300,
+      _posX:100,
+      _posY:900,
       _title:"Stacked Hospital Admissions",
       _data:table,
       _noTicks:10,
@@ -54,16 +54,16 @@ function setup() {
 
   chart.push(
     new HorizontalChart({
-      _barWidth:300,
-      _barHeight:200,
+      _barWidth:500,
+      _barHeight:400,
       _posX:600,
-      _posY:400,
+      _posY:800,
       _title:"Horizontal Stacked Hospital Admissions",
       _data:table,
       _noTicks:10,
-      _roundUp:1,
+      _roundUp:10,
       _barMargin:10,
-      _space:1,
+      _space:5,
       _valueX:"Year",
       _valueY:"Total",
       _valueE:"England",
@@ -73,14 +73,14 @@ function setup() {
 
   chart.push(
     new HorizontalStackedChart({
-      _barWidth:300,
-      _barHeight:200,
-      _posX:600,
+      _barWidth:500,
+      _barHeight:400,
+      _posX:1200,
       _posY:800,
-      _title:"Horizontal Stacked Hospital Admissions",
+      _title:"Horizontal  Hospital Admissions",
       _data:table,
       _noTicks:10,
-      _roundUp:1,
+      _roundUp:10,
       _barMargin:10,
       _space:1,
       _valueX:"Year",

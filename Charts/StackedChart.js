@@ -117,7 +117,8 @@ class StackedChart {
       let spaceY = this.barChartHeight / this.noTicks;
 
       stroke(50);
-      line(0, -spaceY * y, -10, -spaceY * y);
+      fill(50);
+      line(this.barChartWidth, -spaceY * y, -10, -spaceY * y);
 
       let spaceUnit = (this.MaximumNo / this.noTicks).toFixed(2);
       noStroke();
